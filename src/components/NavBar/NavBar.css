@@ -1,0 +1,22 @@
+
+nav,
+.nav-list{
+    display: flex;
+    align-items: center;
+    margin: 10px 15px;
+}
+nav{
+    justify-content: space-between;
+}
+nav > img{
+    width: 70px;
+}
+.nav-list{
+    justify-content: space-between;
+    list-style: none;
+    flex-basis: 60%;
+}
+.nav-list a{
+    text-decoration: none;
+    color: red;
+}
