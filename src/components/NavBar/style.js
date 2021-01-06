@@ -10,7 +10,7 @@ export const NavContainer = styled.nav`
 export const NavLogo = styled.img`
     width: 70px;
 `;
-export const UlNav = styled.ul`
+export const ListNav = styled.div`
     display: flex;
     padding: 10px 15px;
     align-items: center;
@@ -21,6 +21,10 @@ export const UlNav = styled.ul`
 
 export const ANav = styled.a`
     text-decoration: none;
-    color: red;
+    color: #cd003c;
+    cursor: pointer;
+    :hover{
+        color: rgba(0,0,0,0.75);
+    }
 `;
 
