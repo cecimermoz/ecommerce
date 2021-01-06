@@ -1,15 +1,17 @@
 import React from 'react';
-import "./NavBar.css";
+//import "./NavBar.css";
+import { UlNav, ANav } from "./style";
 
 const NavItems = () => {
     return(
-        <ul className="nav-list">
-            <li><a href="#"> INICIO</a></li>
-            <li><a href="#"> QUIENES SOMOS</a></li>
-            <li><a href="#"> PRODUCTOS</a></li>
-            <li><a href="#"> CONTACTO</a></li>
-        </ul>
+        <UlNav>
+            <li><ANav> INICIO </ANav></li>
+            <li><ANav> QUIENES SOMOS </ANav></li>
+            <li><ANav> PRODUCTOS </ANav></li>
+            <li><ANav> CONTACTO </ANav></li>
+        </UlNav> 
     )
 }
+
 
 export default NavItems;
