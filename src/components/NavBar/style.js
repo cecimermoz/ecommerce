@@ -10,6 +10,16 @@ export const NavContainer = styled.nav`
 export const NavLogo = styled.img`
     width: 45px;
 `;
+export const CartBubble = styled.span`
+    background-color: #757575;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    position: absolute;
+    right: 12px;
+    top: 15px;
+`;
+
 /*
 export const ListNav = styled.div`
     display: flex;
