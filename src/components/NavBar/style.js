@@ -3,13 +3,14 @@ import styled from "styled-components";
 export const NavContainer = styled.nav`
     display: flex;
     align-items: center;
-    padding: 10px 15px;
+    padding: 10px 25px;
     justify-content: space-between;
-    box-shadow: 0 4px 6px rgba(0,0,0, 0.2);
+    box-shadow: 0 2px 8px rgba(0,0,0, 0.1);
 `;
 export const NavLogo = styled.img`
-    width: 70px;
+    width: 45px;
 `;
+/*
 export const ListNav = styled.div`
     display: flex;
     padding: 10px 15px;
@@ -23,8 +24,10 @@ export const ANav = styled.a`
     text-decoration: none;
     color: #cd003c;
     cursor: pointer;
+    text-transform: uppercase;
     :hover{
         color: rgba(0,0,0,0.75);
     }
 `;
 
+*/
