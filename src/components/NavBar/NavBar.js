@@ -1,13 +1,13 @@
 import React from 'react';
 import logo from '../../img/logo.png';
-import NavItems from "./NavItems";
 import { NavContainer, NavLogo } from "./style";
+import CardWidget from "./CardWidget";
 
 const NavBar = () => {
     return(
         <NavContainer>
             <NavLogo src={logo} />
-            <NavItems />
+            <CardWidget />
         </NavContainer>
     )
 }
