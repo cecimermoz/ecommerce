@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {TextoPrincipal, ListContainer} from "./style";
 import ItemList from "../ItemList/ItemList";
 
 
 const ItemListContainer = ({greetings}) => {
-       
+    const [objetos, setObjetos] = useState([]);
     const listaObjetos = [
         {
             id: "abc001",
@@ -37,14 +37,17 @@ const ItemListContainer = ({greetings}) => {
             listaObjetos.length ? respuesta(listaObjetos) : error("No hay items") 
         }, 2000)
     });
-
+    useEffect(()=>{
+        cargaDatos.then((lista) => {
+          setObjetos(lista)  
+        }).catch((error) => alert(error))
+    },[])
+    // useEffect,[] en el .then
     return(
         <>
             <TextoPrincipal> {greetings} </TextoPrincipal>
             <ListContainer>
-                {cargaDatos.then((objetos) => {
-                    <ItemList listaObjetos={objetos} />
-                }).catch((error) => alert(error))}
+                <ItemList listaObjetos={objetos} />
             </ListContainer>
         </>
     )
