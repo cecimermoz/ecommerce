@@ -5,7 +5,7 @@ export const NavContainer = styled.nav`
     align-items: center;
     padding: 10px 25px;
     justify-content: space-between;
-    box-shadow: 0 2px 8px rgba(0,0,0, 0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0, 0.3);
 `;
 export const NavLogo = styled.img`
     width: 45px;
