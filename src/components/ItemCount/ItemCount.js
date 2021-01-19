@@ -15,7 +15,7 @@ const ItemCount = ({stock, initial}) => {
     }
 
     const onAdd = (num) => {
-        console.log(`Compraste ${num} producto/s`);
+        alert(`Compraste ${num} producto/s`);
     }
 
     return(
@@ -26,7 +26,7 @@ const ItemCount = ({stock, initial}) => {
                 <ButtonAddSurp onClick={sumar}>+</ButtonAddSurp>
             </ItemCountButtons>
 
-            <ButtonShop onClick={onAdd(valorSeleccionado)}>Comprar</ButtonShop>
+            <ButtonShop onClick={()=>{onAdd(valorSeleccionado)}}>Comprar</ButtonShop>
 
        </ItemCountDiv>
     )
