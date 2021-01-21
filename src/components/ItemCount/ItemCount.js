@@ -5,7 +5,6 @@ const ItemCount = ({stock, initial}) => {
     
     const stockMax = stock;
     const [valorSeleccionado, setValorSeleccionado] = useState(initial);
-    console.log("Valor", valorSeleccionado, " y Valor Initial ", initial);
 
     useEffect(()=>{
         setValorSeleccionado(initial)
