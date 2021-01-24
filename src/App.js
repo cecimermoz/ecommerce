@@ -40,12 +40,31 @@ function App() {
         initial: 1,
         description: "Capacidad: 64GB Dimensiones: 55 mm x 21 mm x 10,1 mm Peso: 10,31 g Temperatura de funcionamiento: entre 0°C y 60°C Temperatura de almacenamiento: entre -20°C y 85°C",
         pictureUrl: "https://http2.mlstatic.com/D_NQ_NP_708228-MLA42289464396_062020-O.webp",
-},
+    },
+    {
+      id: "abc005",
+      title: "Notebook Thinkpad Lenovo E14 i5-10210U 8GB DDR4 Disco SSD 256GB M.2 NVme W10 PRO",
+      price: 109999.14,
+      stock: 6,
+      initial: 1,
+      description: "ESPECIFICACIONES TÉCNICAS: Procesador: Intel Core i5-10210U Processor ( 1.60GHz 6MB ). Sistema operativo: Windows 10 Pro 64. Tamaño Pantalla: 14. Memoria: 8.0GB DDR4-2666 DDR4 SODIMM 2666MHz. Unidad de disco primaria: 256GB SSD PCIe NVMe",
+      pictureUrl: "https://www.lenovo.com/medias/lenovo-thinkpad-e14-hero-1126.png?context=bWFzdGVyfHJvb3R8ODY2NDl8aW1hZ2UvcG5nfGhkZi9oMWIvMTA2NzMyMDY4ODY0MzAucG5nfDI4YjQ3MWM3NWU0YTE4MDdlMzg4ODQxYTk3NDQwOWQ1OTNkMzYxZjdhYmU3NjdlYjYxM2YzNTU3NDkwZmJjNDE",
+  }, 
   ];
+  const categories = [
+    {
+      name: "Accesorios",
+      id: "accesorios-it"
+    },
+    {
+      name: "Hardware",
+      id: "hardware-it"
+    }
+  ]
   return (
-    <div className="App">
+    <div className="App" style= {{backgroundColor: "#f3f3f3"}}>
     <BrowserRouter>
-      <NavBar />
+      <NavBar categories={categories} />
       <Switch>
         <Route path="/item/:itemId">
           <ItemDetailContainer item={listaObjetos[2]} />

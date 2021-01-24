@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const NavContainer = styled.nav`
     display: flex;
     align-items: center;
     padding: 10px 25px;
     justify-content: space-between;
+    background-color: white;
     box-shadow: 0 2px 8px rgba(0,0,0, 0.3);
 `;
 export const NavLogo = styled.img`
@@ -19,25 +21,16 @@ export const CartBubble = styled.span`
     right: 12px;
     top: 15px;
 `;
-
-/*
-export const ListNav = styled.div`
-    display: flex;
-    padding: 10px 15px;
-    align-items: center;
-    justify-content: space-between;
-    list-style: none;
-    flex-basis: 60%;
-`;
-
-export const ANav = styled.a`
+export const CategoryLink = styled(Link)`
     text-decoration: none;
-    color: #cd003c;
-    cursor: pointer;
+    color: #ed4172;
+    font-weight: 400;
     text-transform: uppercase;
-    :hover{
-        color: rgba(0,0,0,0.75);
+    border-bottom: 2px solid transparent;
+    padding: 5px 0;
+    transition: ease 200ms;
+    &:hover{
+        border-color: #ed4172;
+        transition: ease 500ms;
     }
-`;
-
-*/
+`; 
