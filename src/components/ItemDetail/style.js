@@ -8,9 +8,9 @@ export const ItemDetailContainer = styled.div`
     height: 85vh;
     margin: 25px auto;
     max-width: 1460px;
-`;
-export const ImgCard = styled.img`
-    width: 30%;
+    img{
+        width: 50%;
+    }
 `;
 export const ItemTextContainer = styled.div`
     display: flex;
@@ -19,6 +19,13 @@ export const ItemTextContainer = styled.div`
     max-width: 400px;
     align-items: center;
     justify-content: center;
+    h2{
+        text-align: center;
+        width: 80%;
+    }
+    p{
+        text-align: center;
+    }
 `;
 export const ItemPrecio = styled.span`
     font-size: 25px;

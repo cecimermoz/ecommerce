@@ -15,7 +15,7 @@ const ItemDetail = ({item}) => {
 
     return(
         <ItemDetailContainer>
-            <ImgCard src={item.pictureUrl}/>
+            <img src={`${item.pictureUrl}`} alt={`Imagen de ${item.title}`}/>
             <ItemTextContainer>
                 <h2>{item.title}</h2>
                 <p>{item.description ? item.description : "Sin descripción disponible"}</p>

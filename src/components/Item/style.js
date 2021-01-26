@@ -10,7 +10,7 @@ export const CardItem = styled.div`
     box-shadow: 0 4px 6px #ddd;
     margin: 0 auto 25px auto;
     padding: 30px 20px;
-    max-width: 450px;
+    max-width: 400px;
 `;
 
 export const SpanPrice = styled.span`
@@ -20,7 +20,7 @@ export const SpanPrice = styled.span`
 `;
 
 export const CardTitle = styled.h3`
-    font-size: 30px;
+    font-size: 20px;
     margin: 0 0 20px 0;
     text-align: center;
     color: #757575;
