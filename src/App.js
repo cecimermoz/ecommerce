@@ -77,6 +77,9 @@ function App() {
         <Route path="/category/:categoryId">
           <ItemListContainer greetings="IT-Resources Tienda Online" listaObjetos={listaObjetos}/>
         </Route>
+        <Route path="/cart">
+          <ItemListContainer greetings="IT-Resources Tienda Online" listaObjetos={listaObjetos}/>
+        </Route>
         <Route path="/">
           <ItemListContainer greetings="IT-Resources Tienda Online" listaObjetos={listaObjetos}/>
         </Route>

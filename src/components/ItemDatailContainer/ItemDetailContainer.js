@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import ItemDetail from "../ItemDetail/ItemDetail";
-import loader from "../../img/Spinner-0.5s-252px.gif"
+import loader from "../../img/Spinner-0.5s-252px.gif";
+import LoaderGif from "./style";
 
 const ItemDetailContainer = ({listaObjetos}) => {
     const itemParams = useParams();
@@ -25,7 +26,7 @@ const ItemDetailContainer = ({listaObjetos}) => {
     },[]);
 
     return(
-        loading ? <><img src={loader} alt={''}/></> : <ItemDetail item={gettedItem}/>
+        loading ? <LoaderGif><img src={loader} alt={''}/></LoaderGif> : <ItemDetail item={gettedItem}/>
     )
 }
 

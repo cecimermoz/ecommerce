@@ -27,6 +27,7 @@ export const ButtonShop = styled.button`
     border-radius: 5px;
     cursor: pointer;
     padding: 10px;
+    margin: 10px 0;
     color: #fff;
     font-size: 1.2rem;
     font-weight: 700;

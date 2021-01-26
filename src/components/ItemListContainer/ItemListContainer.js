@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {TextoPrincipal, ListContainer} from "./style";
+import {TextoPrincipal, ListContainer, LoaderGif} from "./style";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
-
+import loader from "../../img/Spinner-0.5s-252px.gif";
 
 const ItemListContainer = ({greetings, listaObjetos}) => {
 
+    const [loading, setLoading] = useState(true);
     const [objetos, setObjetos] = useState([]);
     const [title, setTitle] = useState(greetings);
     const {categoryId} = useParams();
@@ -23,26 +24,38 @@ const ItemListContainer = ({greetings, listaObjetos}) => {
                 setObjetos(lista.filter(objeto => objeto.category === 'accesorios'))  
                 setTitle("IT-Resources - Accesorios")
             }).catch((error) => alert("No hay ningún Item para Accesorios"))
+            .finally(()=>{
+                setLoading(false);
+            })
         ) : categoryId === 'hardware' ? (
             cargaDatos.then((lista) => {
                 setObjetos(lista.filter(objeto => objeto.category === 'hardware'))  
                 setTitle("IT-Resources - Hardware")
             }).catch((error) => alert("No hay ningún Item para Hardware"))
+            .finally(()=>{
+                setLoading(false);
+            })
         ) : (
             cargaDatos.then((lista) => {
                 setObjetos(lista)  
             }).catch((error) => alert("Error absoluto!!!!!")))
+            .finally(()=>{
+                setLoading(false);
+            })
     },[categoryId])
     
 
     return(
-        <>
-            <TextoPrincipal> {title} </TextoPrincipal>
-            <ListContainer>
-                <ItemList listaObjetos={objetos} />
-            </ListContainer>
-            
-        </>
+        loading ? 
+            <LoaderGif><img src={loader} alt={''}/></LoaderGif> 
+        : 
+            <>
+                <TextoPrincipal> {title} </TextoPrincipal>
+                <ListContainer>
+                    <ItemList listaObjetos={objetos} />
+                </ListContainer>
+                
+            </>
     )
 }
 

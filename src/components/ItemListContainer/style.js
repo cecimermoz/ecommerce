@@ -11,3 +11,10 @@ export const ListContainer = styled.div`
     align-items: stretch;
     flex-wrap: wrap;
 `;
+export const LoaderGif = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis:100%;
+    margin-top: 15%;
+`;
