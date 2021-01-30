@@ -36,6 +36,7 @@ export const Context = ({children}) => {
         });
         return item;
     }
+    
     return(
         <CartContext.Provider value={{contador, setContador, cartList, setCartList, addItem, removeItem, clear, isInCart}}>
             {children}
