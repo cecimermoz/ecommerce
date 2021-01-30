@@ -14,7 +14,7 @@ const Item = ({item}) => {
                 <img src={pictureUrl} style={{width: "200px"}} alt={title}/>
                 <SpanPrice>{`ARS $ ${price}`}</SpanPrice>
             </CardLink>
-            <ItemCount stock={5} initial={1} />
+            <ItemCount item={item}/>
         </CardItem>
     )
 }

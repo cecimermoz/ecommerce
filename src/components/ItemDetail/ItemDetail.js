@@ -1,17 +1,12 @@
-import React , { useEffect } from "react";
-import ItemCount from "../ItemCount/ItemCount";
-import {ItemDetailContainer, ImgCard, ItemTextContainer, ItemPrecio} from "./style";
+import React from "react";
 import { useParams } from "react-router-dom";
+import ItemCount from "../ItemCount/ItemCount";
+import { ItemDetailContainer, ItemPrecio, ItemTextContainer } from "./style";
 
 
 const ItemDetail = ({item}) => {
     
     const { itemId } = useParams();
-
-    useEffect(() => {
-        console.log("watch change of ", itemId);
-    }, [itemId])
-
 
     return(
         <ItemDetailContainer>
@@ -20,7 +15,8 @@ const ItemDetail = ({item}) => {
                 <h2>{item.title}</h2>
                 <p>{item.description ? item.description : "Sin descripción disponible"}</p>
                 <ItemPrecio>Precio: $ {item.price}</ItemPrecio>
-                <ItemCount stock={item.stock} initial={item.initial}/>
+                <ItemCount item={item}/>
+                <p>{item.stock > 0 ? `Stock disponible: ${item.stock}` : `No hay Stock disponible de este producto`}</p>
             </ItemTextContainer>
         </ItemDetailContainer>
     )

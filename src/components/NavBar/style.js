@@ -14,12 +14,15 @@ export const NavLogo = styled.img`
 `;
 export const CartBubble = styled.span`
     background-color: #757575;
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     border-radius: 100%;
     position: absolute;
     right: 12px;
+    color: white;
     top: 15px;
+    font-weight: 500;
+    text-align: center;
 `;
 export const CategoryLink = styled(Link)`
     text-decoration: none;
