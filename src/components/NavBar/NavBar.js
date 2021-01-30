@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../img/logo.png';
 import { NavContainer, NavLogo, CategoryLink } from "./style";
 import { Link } from "react-router-dom";
-import CardWidget from "./CardWidget";
+import CardWidget from "./CartWidget";
 
 
 const NavBar = ({categories}) => {

@@ -1,27 +1,30 @@
-import React, {useState, useEffect} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import { ItemCountDiv , ItemCountButtons , ButtonShop , ButtonAddSurp} from "./style";
+import { CartContext } from "../CartContext/CartContext";
+import { ButtonAddSurp, ButtonShop, ItemCountButtons, ItemCountDiv } from "./style";
 
-const ItemCount = ({stock, initial}) => {
-    const [count, setCount] = useState(0);
+const ItemCount = ({item}) => {
     const [showButton, setShowButton] = useState(false);
-    const stockMax = stock;
-    const [valorSeleccionado, setValorSeleccionado] = useState(initial);
+    const [valorSeleccionado, setValorSeleccionado] = useState(item.initial);
+    
+    // pasarle todo lo mismo q recibo
+    const {contador, setContador, cartList, setCartList, addItem, removeItem, clear, isInCart} = useContext(CartContext);
 
     useEffect(()=>{
-        setValorSeleccionado(initial)
-    },[initial ]);
+        setValorSeleccionado(item.initial)
+    },[item.initial ]);
     
     const sumar = () => {
-        valorSeleccionado < stockMax && setValorSeleccionado( valorSeleccionado + 1 )
+        valorSeleccionado < item.stock && setValorSeleccionado( valorSeleccionado + 1 )
     }
 
     const reducir = () => {
-        valorSeleccionado > initial && setValorSeleccionado( valorSeleccionado - 1 )
+        valorSeleccionado > item.initial && setValorSeleccionado( valorSeleccionado - 1 )
     }
 
-    const onAdd = (num) => {
-        setCount(num);
+    const onAdd = (item, num) => {
+        addItem(item, num)
+        setContador(num);
         setShowButton(true);
     }
 
@@ -33,9 +36,9 @@ const ItemCount = ({stock, initial}) => {
                 <ButtonAddSurp onClick={sumar}>+</ButtonAddSurp>
             </ItemCountButtons>
             {!showButton ? 
-                <ButtonShop onClick={()=>{onAdd(valorSeleccionado)}}>Comprar</ButtonShop>
+                <ButtonShop onClick={()=>{onAdd(item, valorSeleccionado)}}>Comprar</ButtonShop>
             :
-                <Link to={'/cart'}><ButtonShop>Terminar compra</ButtonShop></Link>
+                <Link to={'/cart'}><ButtonShop onClick={console.log('Esto me llevaría al ./Cart')}>Terminar compra</ButtonShop></Link>
             }
 
        </ItemCountDiv>

@@ -2,6 +2,7 @@ import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from "./components/ItemDatailContainer/ItemDetailContainer"
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Context } from "./components/CartContext/CartContext";
 
 function App() {
   const listaObjetos = [
@@ -69,21 +70,23 @@ function App() {
   return (
     <div className="App">
     <BrowserRouter>
-      <NavBar categories={categories} />
-      <Switch>
-        <Route path="/item/:itemId">
-          <ItemDetailContainer listaObjetos={listaObjetos} />
-        </Route>
-        <Route path="/category/:categoryId">
-          <ItemListContainer greetings="IT-Resources Tienda Online" listaObjetos={listaObjetos}/>
-        </Route>
-        <Route path="/cart">
-          <ItemListContainer greetings="IT-Resources Tienda Online" listaObjetos={listaObjetos}/>
-        </Route>
-        <Route path="/">
-          <ItemListContainer greetings="IT-Resources Tienda Online" listaObjetos={listaObjetos}/>
-        </Route>
-      </Switch>
+      <Context>
+        <NavBar categories={categories} />
+        <Switch>
+          <Route path="/item/:itemId">
+            <ItemDetailContainer listaObjetos={listaObjetos} />
+          </Route>
+          <Route path="/category/:categoryId">
+            <ItemListContainer greetings="IT-Resources Tienda Online" listaObjetos={listaObjetos}/>
+          </Route>
+          <Route path="/cart">
+            <ItemListContainer greetings="IT-Resources Tienda Online" listaObjetos={listaObjetos}/>
+          </Route>
+          <Route path="/">
+            <ItemListContainer greetings="IT-Resources Tienda Online" listaObjetos={listaObjetos}/>
+          </Route>
+        </Switch>    
+      </Context>
     </BrowserRouter>
     </div>
   );
