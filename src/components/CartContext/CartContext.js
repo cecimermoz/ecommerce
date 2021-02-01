@@ -5,36 +5,37 @@ export const CartContext = React.createContext(0);
 export const Context = ({children}) => {
     const [contador, setContador] = useState(0);
     const [cartList, setCartList] = useState([]);
+    const [isInCartCheck, setIsInCartCheck] = useState('');
     
     useEffect(() => {
         console.log("cartList", cartList)
     }, [cartList])
 
     const addItem = (item, quantity) => {
-        cartList.forEach(i => {
-            i.id === item.id
-            ? alert('Este item ya está en tu carrito')
-            : setCartList(...cartList, {item, quantity});
-        });
-        console.log("cartList 2", cartList)
-
+        let itemExiste = cartList.some( i => i.item.id === item.id  );
+        
+        if(!itemExiste){
+            setCartList([{item: item, quantity : quantity}])
+        }else{
+            let items = cartList.map(producto => {
+                producto.item.id === item.id && (producto.quantity = item.quantity + quantity)
+            }); 
+        }
+        
     }
     const removeItem = (itemId) => {
         cartList.forEach( (e, i) => {
-            e.id === itemId && cartList.splice(1, i);
+            e.id === itemId && setCartList(cartList.splice(1, i));
         })
     }
     const clear = () => {
         cartList.length > 0 
-        ? cartList = []
+        ? setCartList([])
         : alert('El carrito ya está vacío');
     }
     const isInCart = (id) => {
-        let item = null;
-        cartList.forEach(i => {
-            i.id === id ? item = true : item = false;
-        });
-        return item;
+        cartList.forEach(i => i.id === id ? setIsInCartCheck(true) : setIsInCartCheck(false));
+        return isInCartCheck
     }
     
     return(
@@ -43,3 +44,4 @@ export const Context = ({children}) => {
         </CartContext.Provider>
     )
 }
+
