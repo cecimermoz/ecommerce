@@ -15,13 +15,18 @@ export const Context = ({children}) => {
         let itemExiste = cartList.some( i => i.item.id === item.id  );
         
         if(!itemExiste){
-            setCartList([{item: item, quantity : quantity}])
+            setCartList([...cartList, {item, quantity}])
         }else{
             let items = cartList.map(producto => {
-                producto.item.id === item.id && (producto.quantity = item.quantity + quantity)
+                if (producto.item === item) {
+                    producto.quantity = producto.quantity + quantity;
+                    return producto;
+                  } else {
+                    return producto; // retorna los objetos que no son los duplicados
+                }
             }); 
-        }
-        
+            setCartList(items);
+        }       
     }
     const removeItem = (itemId) => {
         cartList.forEach( (e, i) => {
