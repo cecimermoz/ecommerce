@@ -24,7 +24,7 @@ const ItemCount = ({item}) => {
 
     const onAdd = (item, num) => {
         addItem(item, num)
-        setContador(num);
+        setContador(contador+num);
         setShowButton(true);
     }
 
