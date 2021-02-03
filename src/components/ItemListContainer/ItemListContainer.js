@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {TextoPrincipal, ListContainer, LoaderGif} from "./style";
+import {TextoPrincipal, ListContainer} from "./style";
 import ItemList from "../ItemList/ItemList";
+import { LoaderGif } from "../loader-gif-style";
 import { useParams } from "react-router-dom";
-import loader from "../../img/Spinner-0.5s-252px.gif";
 
 const ItemListContainer = ({greetings, listaObjetos}) => {
 
@@ -46,9 +46,7 @@ const ItemListContainer = ({greetings, listaObjetos}) => {
     
 
     return(
-        loading ? 
-            <LoaderGif><img src={loader} alt={''}/></LoaderGif> 
-        : 
+        loading ? <LoaderGif /> : 
             <>
                 <TextoPrincipal> {title} </TextoPrincipal>
                 <ListContainer>

@@ -3,6 +3,7 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from "./components/ItemDatailContainer/ItemDetailContainer"
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Context } from "./components/CartContext/CartContext";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   const listaObjetos = [
@@ -80,7 +81,7 @@ function App() {
             <ItemListContainer greetings="IT-Resources Tienda Online" listaObjetos={listaObjetos}/>
           </Route>
           <Route path="/cart">
-            <ItemListContainer greetings="IT-Resources Tienda Online" listaObjetos={listaObjetos}/>
+            <Cart />
           </Route>
           <Route path="/">
             <ItemListContainer greetings="IT-Resources Tienda Online" listaObjetos={listaObjetos}/>

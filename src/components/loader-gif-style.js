@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import loader from "../img/Spinner-0.5s-252px.gif";
 
-const LoaderGif = styled.div`
+const Loader = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,4 +9,4 @@ const LoaderGif = styled.div`
     margin-top: 15%;
 `;
 
-export default LoaderGif;
+export const LoaderGif = () => <Loader><img src={loader} alt={''}/></Loader>

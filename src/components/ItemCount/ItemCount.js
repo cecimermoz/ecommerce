@@ -12,7 +12,7 @@ const ItemCount = ({item}) => {
 
     useEffect(()=>{
         setValorSeleccionado(item.initial)
-    },[item.initial ]);
+    },[ item.initial ]);
     
     const sumar = () => {
         valorSeleccionado < item.stock && setValorSeleccionado( valorSeleccionado + 1 )
