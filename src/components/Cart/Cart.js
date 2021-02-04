@@ -1,9 +1,8 @@
 import React, {useState, useContext, useEffect} from 'react';
 import { CartContext } from "../CartContext/CartContext";
 import { LoaderGif } from "../loader-gif-style";
-import { CardItem, SpanPrice, CardTitle } from "../Item/style";
 import ItemCount from "../ItemCount/ItemCount";
-import { ItemDetailContainer } from "../ItemDetail/style";
+import { TableWrapper } from "./style";
 
 const Cart = () => {
     const { cartList } = useContext(CartContext);
@@ -39,22 +38,22 @@ const Cart = () => {
 
     return(
         loading ? <LoaderGif /> : 
-        <ItemDetailContainer style={{flexDirection: "column", height: "auto"}}>
+        <TableWrapper style={{}}>
 
             {cartList && cartList.map( (e,i) => (
                 
-                <CardItem key={i}>
-                    <CardTitle>{e.item.title}</CardTitle>
+                <div key={i}>
+                    <div>{e.item.title}</div>
                     <img src={e.item.pictureUrl} alt=''  style={{width: "100px"}} />
-                    <SpanPrice>{`$ ${e.item.price}`}</SpanPrice>
+                    <div>{`$ ${e.item.price}`}</div>
                     <div style={{color: "red"}}>{`Cantidad ${ e.quantity }`}</div>
-                    <ItemCount item={e.item}/>
+                    <div item={e.item}/>
                     {}
-                </CardItem>
+                </div>
 
             ))}
-            <SpanPrice>Importe total de la compra: $ {precioTotal}</SpanPrice>
-        </ItemDetailContainer>
+            <div>Importe total de la compra: $ {precioTotal}</div>
+        </TableWrapper>
         
     )
 }
