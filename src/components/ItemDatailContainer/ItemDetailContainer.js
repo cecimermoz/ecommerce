@@ -12,7 +12,7 @@ const ItemDetailContainer = ({listaObjetos}) => {
     const getItems = new Promise((res, err) => {
         setTimeout(()=>{
             item.length ? res(item[0]) : err("No seleccionaste ningun item, chamigo") 
-        },2000);
+        },500);
     });
 
     useEffect(()=>{

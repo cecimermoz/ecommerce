@@ -14,7 +14,7 @@ const ItemListContainer = ({greetings, listaObjetos}) => {
     const cargaDatos = new Promise((respuesta, error) => {
         setTimeout(() => {
             listaObjetos.length ? respuesta(listaObjetos) : error("No hay items") 
-        }, 2000)
+        }, 500)
     });
 
     useEffect(()=>{

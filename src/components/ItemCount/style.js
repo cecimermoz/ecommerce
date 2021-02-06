@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ItemCountDiv = styled.div`
-    width: 40%;
+    width: 55%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -19,6 +19,11 @@ export const ItemCountButtons = styled.div`
     font-size: 1.2rem;
     font-weight: 700;
 `;
+export const ItemCartButton = styled(ItemCountButtons)`
+    margin-top: 40px;
+    width: 60%;
+`;
+
 
 export const ButtonShop = styled.button`
     width: 100%;
@@ -34,6 +39,7 @@ export const ButtonShop = styled.button`
 `;
 
 export const ButtonAddSurp = styled.button`
+    width: 100%;
     background-color: #FFF;
     padding: 5px 12px;
     border: 1px solid #ed4172;

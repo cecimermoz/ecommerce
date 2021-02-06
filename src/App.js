@@ -49,7 +49,7 @@ function App() {
     },
     {
       id: "abc005",
-      title: "Notebook Thinkpad Lenovo E14 i5-10210U 8GB DDR4 Disco SSD 256GB M.2 NVme W10 PRO",
+      title: "Notebook Thinkpad Lenovo E14 i5",
       price: 109999.14,
       stock: 6,
       category: 'hardware',

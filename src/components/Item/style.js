@@ -10,10 +10,11 @@ export const CardItem = styled.div`
     box-shadow: 0 4px 6px #ddd;
     margin: 0 auto 25px auto;
     padding: 30px 20px;
-    max-width: 400px;
+    width: 320px;
+    height: 420px;
 `;
 
-export const SpanPrice = styled.span`
+export const SpanPrice = styled.div`
     font-size: 20px;
     color: #757575;
     margin-top: 15px;
