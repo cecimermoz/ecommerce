@@ -7,7 +7,7 @@ import { CartContext } from "../CartContext/CartContext";
 
 const CardWidget = () => {
 
-    const {contador, setContador} = useContext(CartContext);
+    const {contador} = useContext(CartContext);
 
     return(
         <React.Fragment>
