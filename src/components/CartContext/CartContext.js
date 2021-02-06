@@ -35,10 +35,11 @@ export const Context = ({children}) => {
         })
 
     }
-    const clear = () => {
-        cartList.length > 0 
-        ? setCartList([])
-        : alert('El carrito ya está vacío');
+    const clearCart = () => {
+        if(cartList.length > 0){
+            setCartList([])
+            setContador(0) 
+        } else alert('El carrito ya está vacío');
     }
     const isInCart = (id) => {
         cartList.forEach(i => i.id === id ? setIsInCartCheck(true) : setIsInCartCheck(false));
@@ -46,7 +47,7 @@ export const Context = ({children}) => {
     }
     
     return(
-        <CartContext.Provider value={{contador, setContador, cartList, setCartList, addItem, removeItem, clear, isInCart}}>
+        <CartContext.Provider value={{contador, setContador, cartList, setCartList, addItem, removeItem, clearCart, isInCart}}>
             {children}
         </CartContext.Provider>
     )

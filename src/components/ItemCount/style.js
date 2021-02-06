@@ -39,7 +39,6 @@ export const ButtonShop = styled.button`
 `;
 
 export const ButtonAddSurp = styled.button`
-    width: 100%;
     background-color: #FFF;
     padding: 5px 12px;
     border: 1px solid #ed4172;

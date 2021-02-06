@@ -13,7 +13,9 @@ const CartCount = ({item, calcPrice}) => {
     return(
 
         <ItemCartButton>
-            <ButtonAddSurp onClick={()=>{
+            <ButtonAddSurp 
+            style={{width:'100%'}}
+            onClick={()=>{
                 removeItem(item)
                 calcPrice()
                 }}>Eliminar</ButtonAddSurp>
