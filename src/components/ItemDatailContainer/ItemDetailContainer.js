@@ -1,11 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import ItemDetail from "../ItemDetail/ItemDetail";
+import { getFirestore } from "../../firebase";
 import { LoaderGif } from "../loader-gif-style";
 
-const ItemDetailContainer = ({listaObjetos}) => {
+const ItemDetailContainer = () => {
     const itemParams = useParams();
-    const item = listaObjetos.filter(i => i.id === itemParams.itemId);  
+    // const item = listaObjetos.filter(i => i.id === itemParams.itemId);  
+    const db = getFirestore();
+    const listadoDB = db.collection('items');
+    const itemDB = listadoDB.where('categoryId', '==', 'accesorios')
+    
     const [gettedItem, setGettedItem] = useState(item.length ? item[0] : {});
     const [loading, setLoading] = useState(true);
 

@@ -13,54 +13,56 @@ const ItemListContainer = ({greetings}) => {
     const [title, setTitle] = useState(greetings);
     const {categoryId} = useParams();
     const db = getFirestore();
-    const listaObjetos = db.collection('items');
-    /* const cargaDatos = new Promise((respuesta, error) => {
-        setTimeout(() => {
-            listaObjetos.length ? respuesta(listaObjetos) : error("No hay items") 
-        }, 2000)
-    }); */
+    const listadoDB = db.collection('items');
+    const accesories = listadoDB.where('categoryId', '==', 'accesorios')
+    const hardware = listadoDB.where('categoryId', '==', 'hardware')
 
     // Firebase
     useEffect(()=>{
-        setLoading(true);
-        listaObjetos.get().then((query) => {
-            query.size === 0 && console.log('SIN RESULTADOS DESDE DB')
-            setObjetos(query.docs.map( item => item.data()))
-        })
-        .catch((err) => alert(err))
-        .finally(() => setLoading(false));
-    }, []);
+        // If theres no filter from the params()
+        !categoryId && 
+            setLoading(true);
+            listadoDB.get().then((query) => {
+                query.size === 0 && console.log('SIN RESULTADOS DESDE DB')
+                setObjetos(query.docs.map( item => item.data()))
+            })
+            .catch((err) => alert(err))
+            .finally(() => setLoading(false));
+        ;
 
-
- 
-    // ItemList methods
-    useEffect(()=>{
-        // reemplazar los if por variable CategoryId modificar tmb setTitle
-        categoryId === 'accesorios' ? (
-            listaObjetos.get().then((lista) => {
-                setObjetos(lista.filter(objeto => objeto.category === 'accesorios'))  
+        // If Params() = Accesorios
+        categoryId === 'Accesorios' && ( 
+            accesories.get().then((q) => {
+                (q.size === 0) && console.log("No hay ningún Item para Accesorios")
+                setObjetos(q.docs.map(objeto => objeto.data()))  
                 setTitle("IT-Resources - Accesorios")
-            }).catch((error) => alert("No hay ningún Item para Accesorios"))
+            })
             .finally(()=>{
                 setLoading(false);
             })
-        ) : categoryId === 'hardware' ? (
-            listaObjetos.get().then((lista) => {
-                setObjetos(lista.filter(objeto => objeto.category === 'hardware'))  
+        ) 
+
+        // If Params() = Hardware
+        categoryId === 'Hardware' && ( 
+            hardware.get().then((q) => {
+                (q.size === 0) && console.log("No hay ningún Item para Accesorios")
+                setObjetos(q.docs.map(objeto => objeto.data()))  
                 setTitle("IT-Resources - Hardware")
-            }).catch((error) => alert("No hay ningún Item para Hardware"))
+            })
             .finally(()=>{
                 setLoading(false);
             })
-        ) : (
-            listaObjetos.get().then((lista) => {
-                setObjetos(lista)  
-            }).catch((error) => alert("Error absoluto!!!!!")))
-            .finally(()=>{
-                setLoading(false);
-            })
+        ) 
+
     },[categoryId])
     
+    /*) : (
+            listadoDB.get().then((lista) => {
+                setObjetos(lista.docs.data())  
+            }).catch((error) => console.log(error)))
+            .finally(()=>{
+                setLoading(false);
+            })*/
 
 
     return(

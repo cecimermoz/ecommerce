@@ -26,8 +26,8 @@ const NavBar = () => {
         { categories?.length > 0 && 
             <NavContainer>
                 <Link to={'/'}><NavLogo src={logo} /></Link>
-                {categories.map((cate) => (
-                    <CategoryLink key={cate.id} to={`/category/${cate.id}`}>{cate.name}</CategoryLink>
+                {categories.map((cate, i) => (
+                    <CategoryLink key={`${cate.name}${i}`} to={`/category/${cate.name}`}>{cate.name}</CategoryLink>
                 ))}
                 <CardWidget />
             </NavContainer>

@@ -1,26 +1,23 @@
-import React, {useState } from 'react';
-import NavBar from './components/NavBar/NavBar';
-import ItemListContainer from './components/ItemListContainer/ItemListContainer';
-import ItemDetailContainer from "./components/ItemDatailContainer/ItemDetailContainer"
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { Context } from "./components/CartContext/CartContext";
+import React, { useState } from 'react';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Cart from "./components/Cart/Cart";
-import { LoaderGif } from "./components/loader-gif-style";
+import { Context } from "./components/CartContext/CartContext";
+import ItemDetailContainer from "./components/ItemDatailContainer/ItemDetailContainer";
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+import NavBar from './components/NavBar/NavBar';
 
 
 function App() {
-  const [loading] = useState(true);
   const [listaObjetos] = useState([]);
 
   return (
-    loading ? <LoaderGif /> :
     <div className="App">
     <BrowserRouter>
       <Context>
         <NavBar/>
         <Switch>
           <Route path="/item/:itemId">
-            <ItemDetailContainer listaObjetos={listaObjetos} />
+            <ItemDetailContainer />
           </Route>
           <Route path="/category/:categoryId">
             <ItemListContainer greetings="IT-Resources Tienda Online"/>

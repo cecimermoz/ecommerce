@@ -8,7 +8,7 @@ export const Context = ({children}) => {
     const [isInCartCheck, setIsInCartCheck] = useState('');
     
     useEffect(() => {
-        console.log("cartList", cartList)
+        //console.log("cartList", cartList)
     }, [cartList])
 
     const addItem = (item, quantity) => {
