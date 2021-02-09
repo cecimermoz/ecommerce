@@ -1,10 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CartContext } from "../CartContext/CartContext";
+import { LoaderGif } from "../loader-gif-style";
+import ItemCount from "../ItemCount/ItemCount";
+import { TableWrapper } from "./style";
 import { CardItem, CardTitle, SpanPrice } from "../Item/style";
 import CartCount from "../ItemCount/CartCount";
 import { ItemDetailContainer } from "../ItemDetail/style";
 import { LoaderGif } from "../loader-gif-style";
+
 
 const Cart = () => {
     const { cartList } = useContext(CartContext);
@@ -42,24 +46,22 @@ const Cart = () => {
 
     return(
         loading ? <LoaderGif /> : 
-        <ItemDetailContainer style={{flexDirection: 'column', height: "auto"}}>
-            <div style={{display:'flex', justifyContent: 'space-between'}}>
+        <TableWrapper style={{flexDirection: 'column', height: "auto"}}>
+
             {cartList && cartList.map( (e,i) => (
                 
-                <CardItem key={i} style={{margin: '20px 15px', position: 'relative', justifyContent: 'center'}}>
-
-                    <CartBubble>{ e.quantity }</CartBubble>
-                    <CardTitle>{e.item.title}</CardTitle>
-                    <img src={e.item.pictureUrl} alt='' />
-                    <SpanPrice>{`$ ${e.item.price}`}</SpanPrice>
-                    <CartCount item={e} calcPrice={calcPrice}/> 
-                    
-                </CardItem>  
+                <div key={i}>
+                    <div>{e.item.title}</div>
+                    <img src={e.item.pictureUrl} alt=''  style={{width: "100px"}} />
+                    <div>{`$ ${e.item.price}`}</div>
+                    <div style={{color: "red"}}>{`Cantidad ${ e.quantity }`}</div>
+                    <div item={e.item}/>
+                    {}
+                </div>
 
             ))}
-            </div>
-            <SpanPrice>Importe total de la compra: $ {precioTotal}</SpanPrice>
-        </ItemDetailContainer>
+            <div>Importe total de la compra: $ {precioTotal}</div>
+        </TableWrapper>
         
     )
 }

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const CardWidget = () => {
 
-    const {contador, setContador} = useContext(CartContext);
+    const {contador} = useContext(CartContext);
 
     return(
         <Link to={'/cart'}>
