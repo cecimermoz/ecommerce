@@ -5,29 +5,35 @@ import { getFirestore } from "../../firebase";
 import { LoaderGif } from "../loader-gif-style";
 
 const ItemDetailContainer = () => {
-    const itemParams = useParams();
-    // const item = listaObjetos.filter(i => i.id === itemParams.itemId);  
-    const db = getFirestore();
-    const listadoDB = db.collection('items');
-    const itemDB = listadoDB.where('categoryId', '==', 'accesorios')
-    
-    const [gettedItem, setGettedItem] = useState(item.length ? item[0] : {});
+    const paramId = useParams();
+    //console.log('param',paramId)
     const [loading, setLoading] = useState(true);
-
-    const getItems = new Promise((res, err) => {
-        setTimeout(()=>{
-            item.length ? res(item[0]) : err("No seleccionaste ningun item, chamigo") 
-        },2000);
-    });
-
+    const [gettedItem, setGettedItem] = useState({});
+    
     useEffect(()=>{
-        getItems.then((item)=>{
-            setGettedItem(item)
-        }).catch(error => console.log(error))
+        const db = getFirestore();
+        const listadoDB = db.collection('items');
+        const itemDB = listadoDB.doc(paramId);
+        
+        itemDB.get().then((doc) => {
+            if(!doc.exists) {
+                console.log('No existe ningún item')
+                return;
+            };
+            setGettedItem({
+                id: doc.id,
+                ...doc.data()
+            })
+        })
+        .catch(error => console.log(error))
         .finally(()=>{
             setLoading(false);
         });
-    },[]);
+    },[paramId]);
+
+    useEffect(()=>{
+        console.log('item',gettedItem)
+    },[gettedItem])
 
     return(
         loading ? <LoaderGif /> : <ItemDetail item={gettedItem}/>

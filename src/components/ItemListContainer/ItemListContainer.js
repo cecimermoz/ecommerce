@@ -24,7 +24,9 @@ const ItemListContainer = ({greetings}) => {
             setLoading(true);
             listadoDB.get().then((query) => {
                 query.size === 0 && console.log('SIN RESULTADOS DESDE DB')
-                setObjetos(query.docs.map( item => item.data()))
+                setObjetos(query.docs.map( item => {
+                    return ({id:item.id, ...item.data()})
+                }))
             })
             .catch((err) => alert(err))
             .finally(() => setLoading(false));
@@ -34,7 +36,9 @@ const ItemListContainer = ({greetings}) => {
         categoryId === 'Accesorios' && ( 
             accesories.get().then((q) => {
                 (q.size === 0) && console.log("No hay ningún Item para Accesorios")
-                setObjetos(q.docs.map(objeto => objeto.data()))  
+                setObjetos(q.docs.map(objeto => {
+                    return ({id:objeto.id, ...objeto.data()})
+                }))  
                 setTitle("IT-Resources - Accesorios")
             })
             .finally(()=>{
@@ -46,7 +50,9 @@ const ItemListContainer = ({greetings}) => {
         categoryId === 'Hardware' && ( 
             hardware.get().then((q) => {
                 (q.size === 0) && console.log("No hay ningún Item para Accesorios")
-                setObjetos(q.docs.map(objeto => objeto.data()))  
+                setObjetos(q.docs.map(objeto => {
+                    return ({id:objeto.id, ...objeto.data()})
+                }))   
                 setTitle("IT-Resources - Hardware")
             })
             .finally(()=>{
