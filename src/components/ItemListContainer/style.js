@@ -7,6 +7,7 @@ export const TextoPrincipal = styled.h1`
 
 export const ListContainer = styled.div`
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: stretch;
     flex-wrap: wrap;

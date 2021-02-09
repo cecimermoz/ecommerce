@@ -8,7 +8,6 @@ import NavBar from './components/NavBar/NavBar';
 
 
 function App() {
-  const [listaObjetos] = useState([]);
 
   return (
     <div className="App">

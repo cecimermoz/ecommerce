@@ -8,6 +8,7 @@ const ItemDetailContainer = () => {
     const paramId = useParams();
     //console.log('param',paramId)
     const [loading, setLoading] = useState(true);
+
     const [gettedItem, setGettedItem] = useState({});
     
     useEffect(()=>{

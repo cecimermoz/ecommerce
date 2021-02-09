@@ -11,7 +11,7 @@ const Item = ({item}) => {
         <CardItem>
             <CardLink to={`/item/${id}`}>
                 <CardTitle>{title}</CardTitle>
-                <img src={pictureUrl} style={{width: "200px"}} alt={title}/>
+                <img src={pictureUrl} style={{maxHeight: "170px", maxWidth: '250px'}} alt={title}/>
                 <SpanPrice>{`ARS $ ${price}`}</SpanPrice>
             </CardLink>
             <ItemCount item={item}/>

@@ -6,10 +6,6 @@ export const Context = ({children}) => {
     const [contador, setContador] = useState(0);
     const [cartList, setCartList] = useState([]);
     const [isInCartCheck, setIsInCartCheck] = useState('');
-    
-    useEffect(() => {
-        //console.log("cartList", cartList)
-    }, [cartList])
 
     const addItem = (item, quantity) => {
         let itemExiste = cartList.some( i => i.item.id === item.id  );
@@ -28,10 +24,16 @@ export const Context = ({children}) => {
             setCartList(items);
         }       
     }
-    const removeItem = (itemId) => {
-        cartList.forEach( (e, i) => {
-            e.id === itemId && setCartList(cartList.splice(1, i));
+    const removeItem = (itemToDelet) => {
+
+        cartList.forEach( (producto, i, arr) => {
+            if(producto.item.id === itemToDelet.item.id){
+                cartList.splice(i, 1);
+                setContador(contador - producto.quantity);
+                setCartList(arr);
+            }
         })
+
     }
     const clear = () => {
         cartList.length > 0 
