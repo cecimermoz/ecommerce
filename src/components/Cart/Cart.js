@@ -1,6 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CartContext } from "../CartContext/CartContext";
+import { LoaderGif } from "../loader-gif-style";
+import ItemCount from "../ItemCount/ItemCount";
+import { TableWrapper } from "./style";
 import { CardItem, CardTitle, SpanPrice } from "../Item/style";
 import CartCount from "../ItemCount/CartCount";
 import { ItemDetailContainer } from "../ItemDetail/style";
@@ -8,6 +11,7 @@ import { LoaderGif } from "../loader-gif-style";
 import { Link } from "react-router-dom";
 import { TextoPrincipal } from "../ItemListContainer/style";
 import { ButtonShop } from "../ItemCount/style";
+
 
 const Cart = () => {
     const { cartList, clearCart } = useContext(CartContext);
