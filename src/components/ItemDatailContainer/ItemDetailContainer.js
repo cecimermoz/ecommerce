@@ -14,7 +14,7 @@ const ItemDetailContainer = () => {
     useEffect(()=>{
         const db = getFirestore();
         const listadoDB = db.collection('items');
-        const itemDB = listadoDB.doc(paramId);
+        const itemDB = listadoDB.doc(paramId.itemId);
         
         itemDB.get().then((doc) => {
             if(!doc.exists) {
