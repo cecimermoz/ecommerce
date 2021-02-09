@@ -33,7 +33,7 @@ const ItemDetailContainer = () => {
     },[paramId]);
 
     useEffect(()=>{
-        console.log('item',gettedItem)
+       
     },[gettedItem])
 
     return(

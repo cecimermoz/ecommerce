@@ -1,40 +1,56 @@
+import '@firebase/firestore';
+import firebase from 'firebase/app';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { CartContext } from "../CartContext/CartContext";
+import { getFirestore } from "../../firebase";
 import { CardItem, CardTitle, SpanPrice } from "../Item/style";
 import CartCount from "../ItemCount/CartCount";
 import { ButtonShop } from "../ItemCount/style";
 import { ItemDetailContainer } from "../ItemDetail/style";
 import { TextoPrincipal } from "../ItemListContainer/style";
 import { LoaderGif } from "../loader-gif-style";
+import { faLessThanEqual } from '@fortawesome/free-solid-svg-icons';
 
 
 const Cart = () => {
+    
+    
     const { cartList, clearCart } = useContext(CartContext);
     const [loading, setLoading] = useState(true);
+    const [order, setOrder] = useState({});
+    const [stockActual, setStockActual] = useState()
+    const [orderId, setOrderId] = useState({});
     const [precioTotal, setPrecioTotal] = useState(0);
-    const [itemList, setItemList] = useState([]);
-    console.log('inicia en, ',precioTotal);
+    const buyerInfo = {
+        name: 'ceci',
+        phone: 1234,
+        email: 'q@q.com',
+    }
 
-    const getItems = new Promise((res, err) => {
-        setTimeout(()=>{
-            cartList.length ? res(cartList) : err("No seleccionaste ningun item, chamigo") 
-        },500);
-    });
+    
+    useEffect(()=>{
+        console.log('En useEffect, stockActual --> ', stockActual)
+    },[stockActual]);
+    
+    useEffect(()=>{
+        calcPrice()
+        setLoading(false)
+    },[cartList]);
 
     useEffect(()=>{
-        getItems.then((cartList)=>{
-            setItemList(cartList)
-        }).catch(error => console.error(error))
-        .finally(()=>{
-            setLoading(false);
-        });
-    },[itemList]);
+        setOrder({
+            
+            buyer: buyerInfo,
+            items: cartList,
+            date: firebase.firestore.Timestamp.fromDate(new Date()),
+            total: precioTotal,
+              
+        })
 
-    useEffect(() => {
-        calcPrice()
-    }, [cartList]);
+        
+    },[precioTotal]);
 
     function calcPrice () {
         let price = 0;
@@ -43,11 +59,39 @@ const Cart = () => {
         });
         setPrecioTotal(price.toFixed(2))
     }
+    
+    function handleOrder(){
+        setLoading(true)
+        const db = getFirestore();
+        const ordersDB = db.collection('orders');
+        
+        ordersDB.add(order)
+        .then((doc) => {
+            setOrderId(doc.id)
+            
+            doc.get().then((arrDoc) => {
+                arrDoc.data().items.forEach( (i) => {
+                    
+                    let qtyToReduce = i.quantity;
+                    let docActual = db.collection('items').doc(i.item.id);
+                    docActual.get().then( d => 
+                        setStockActual(d.data().stock)
+                    );
+                    docActual.update({
+                        stock: stockActual - qtyToReduce
+                    })           
+                })
+            })
+        })
+        
+        .catch((e)=>{console.log('No funciono el add.order',e)})
+        .finally(()=> setLoading(false))
+    }
+
 
     return(
         loading ? <LoaderGif /> : 
         <ItemDetailContainer style={{flexDirection: 'column', height: "auto"}}>
-
             {cartList.length < 1 
                 ?
                     <>
@@ -72,6 +116,7 @@ const Cart = () => {
                         ))}
                         </div>
                         <SpanPrice>Importe total de la compra: <span style={{fontWeight:'700'}}>$ {precioTotal}</span></SpanPrice>
+                        <ButtonShop onClick={handleOrder} style={{maxWidth: '150px'}}>Confirmar Compra</ButtonShop>
                         <ButtonShop onClick={clearCart} style={{maxWidth: '150px'}}>Vaciar carrito</ButtonShop>
                     </>
             }
