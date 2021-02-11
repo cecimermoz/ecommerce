@@ -9,4 +9,4 @@ En este Repo encontrarán la última entrega del proyecto a nivel académico, pe
  4) Entrar a tu localhost --> http://localhost:3000
 
 ### Techs
-React React-Bootstrap Firebase
+React & Firebase
