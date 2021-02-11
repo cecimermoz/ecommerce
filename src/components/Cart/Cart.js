@@ -3,15 +3,14 @@ import firebase from 'firebase/app';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
-import { CartContext } from "../CartContext/CartContext";
 import { getFirestore } from "../../firebase";
+import { CartContext } from "../CartContext/CartContext";
 import { CardItem, CardTitle, SpanPrice } from "../Item/style";
 import CartCount from "../ItemCount/CartCount";
 import { ButtonShop } from "../ItemCount/style";
 import { ItemDetailContainer } from "../ItemDetail/style";
 import { TextoPrincipal } from "../ItemListContainer/style";
 import { LoaderGif } from "../loader-gif-style";
-import { faLessThanEqual } from '@fortawesome/free-solid-svg-icons';
 
 
 const Cart = () => {
@@ -47,9 +46,7 @@ const Cart = () => {
             date: firebase.firestore.Timestamp.fromDate(new Date()),
             total: precioTotal,
               
-        })
-
-        
+        })        
     },[precioTotal]);
 
     function calcPrice () {
@@ -60,32 +57,64 @@ const Cart = () => {
         setPrecioTotal(price.toFixed(2))
     }
     
-    function handleOrder(){
+    async function handleOrder(){
         setLoading(true)
         const db = getFirestore();
         const ordersDB = db.collection('orders');
-        
-        ordersDB.add(order)
-        .then((doc) => {
-            setOrderId(doc.id)
+
+        if(order.items.length > 1){ 
+            const itemsCarrito = order.items;
+
+            // Esto es método de Firebase tal cual ------
+            const itemsToUpdate =  db.collection('items').where(firebase.firestore.FieldPath.documentId(), 'in', itemsCarrito.map( i => i.item.id ));
+            // ------------------------------------------   
+            const query = await itemsToUpdate.get();
+            const batch = db.batch();
+            const outOfStock = [];
+
+            query.docs.forEach((doc, idx) => {
+                if(doc.data().stock >= itemsCarrito[idx].quantity){
+
+                    let ths = doc.data().stock;
+                    batch.update(doc.ref, { stock: ths - itemsCarrito[idx].quantity})
+
+                } else {
+                    outOfStock.push({...doc.data(), id: doc.item.id})
+                }
+            })
             
-            doc.get().then((arrDoc) => {
-                arrDoc.data().items.forEach( (i) => {
-                    
-                    let qtyToReduce = i.quantity;
-                    let docActual = db.collection('items').doc(i.item.id);
-                    docActual.get().then( d => 
-                        setStockActual(d.data().stock)
-                    );
-                    docActual.update({
-                        stock: stockActual - qtyToReduce
-                    })           
+            if (outOfStock.length === 0){
+                
+                await batch.commit();
+                setLoading(false);
+                alert('Compra realizada con éxito');
+                clearCart();
+
+            } else { alert('No hay suficiente Stock')}
+
+
+        } else {
+            ordersDB.add(order)
+            .then((doc) => {
+                setOrderId(doc.id)
+                
+                doc.get().then((arrDoc) => {
+                    arrDoc.data().items.forEach( (i) => {
+                        
+                        let qtyToReduce = i.quantity;
+                        let docActual = db.collection('items').doc(i.item.id);
+                        docActual.get().then( d => 
+                            setStockActual(d.data().stock)
+                        );
+                        docActual.update({
+                            stock: stockActual - qtyToReduce
+                        })           
+                    })
                 })
             })
-        })
-        
-        .catch((e)=>{console.log('No funciono el add.order',e)})
-        .finally(()=> setLoading(false))
+            .catch((e)=>{console.log('No funciono el add.order',e)})
+            .finally(()=> setLoading(false))
+        }        
     }
 
 
