@@ -27,8 +27,6 @@ const Cart = () => {
         phone: 1234,
         email: 'q@q.com',
     }
-
-    
     useEffect(()=>{
         console.log('En useEffect, stockActual --> ', stockActual)
     },[stockActual]);
@@ -40,12 +38,10 @@ const Cart = () => {
 
     useEffect(()=>{
         setOrder({
-            
             buyer: buyerInfo,
             items: cartList,
             date: firebase.firestore.Timestamp.fromDate(new Date()),
             total: precioTotal,
-              
         })        
     },[precioTotal]);
 
@@ -64,7 +60,6 @@ const Cart = () => {
 
         if(order.items.length > 1){ 
             const itemsCarrito = order.items;
-
             // Esto es método de Firebase tal cual ------
             const itemsToUpdate =  db.collection('items').where(firebase.firestore.FieldPath.documentId(), 'in', itemsCarrito.map( i => i.item.id ));
             // ------------------------------------------   
@@ -119,14 +114,18 @@ const Cart = () => {
 
 
     return(
-        loading ? <LoaderGif /> : 
+        loading ? <LoaderGif /> 
+        : 
         <ItemDetailContainer style={{flexDirection: 'column', height: "auto"}}>
+            
             {cartList.length < 1 
+                
                 ?
                     <>
                         <TextoPrincipal style={{fontWeight:'400'}} >Aún no hay ningún ítem seleccionado</TextoPrincipal> 
                         <Link to={'/'}><ButtonShop>Buscar productos</ButtonShop></Link>
                     </>
+                
                 : 
                     <>
                         <div style={{display:'flex', justifyContent: 'space-between'}}>
@@ -149,9 +148,6 @@ const Cart = () => {
                         <ButtonShop onClick={clearCart} style={{maxWidth: '150px'}}>Vaciar carrito</ButtonShop>
                     </>
             }
-
-            
-
 
         </ItemDetailContainer>
         

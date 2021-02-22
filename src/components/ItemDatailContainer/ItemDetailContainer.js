@@ -1,14 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ItemDetail from "../ItemDetail/ItemDetail";
 import { getFirestore } from "../../firebase";
+import ItemDetail from "../ItemDetail/ItemDetail";
 import { LoaderGif } from "../loader-gif-style";
 
 const ItemDetailContainer = () => {
     const paramId = useParams();
-    //console.log('param',paramId)
     const [loading, setLoading] = useState(true);
-
     const [gettedItem, setGettedItem] = useState({});
     
     useEffect(()=>{
@@ -18,7 +16,6 @@ const ItemDetailContainer = () => {
         
         itemDB.get().then((doc) => {
             if(!doc.exists) {
-                console.log('No existe ningún item')
                 return;
             };
             setGettedItem({
@@ -31,10 +28,6 @@ const ItemDetailContainer = () => {
             setLoading(false);
         });
     },[paramId]);
-
-    useEffect(()=>{
-       
-    },[gettedItem])
 
     return(
         loading ? <LoaderGif /> : <ItemDetail item={gettedItem}/>

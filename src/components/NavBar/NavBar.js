@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import logo from '../../img/logo.png';
-import { NavContainer, NavLogo, CategoryLink } from "./style";
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import CartWidget from "./CartWidget";
-import CardWidget from "./CartWidget";
 import { getFirestore } from "../../firebase";
+import logo from '../../img/logo.png';
+import CardWidget from "./CartWidget";
+import { CategoryLink, NavContainer, NavLogo } from "./style";
 
 const NavBar = () => {
 

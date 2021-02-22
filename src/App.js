@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Cart from "./components/Cart/Cart";
 import { Context } from "./components/CartContext/CartContext";
@@ -11,25 +11,25 @@ function App() {
 
   return (
     <div className="App">
-    <BrowserRouter>
-      <Context>
-        <NavBar/>
-        <Switch>
-          <Route path="/item/:itemId">
-            <ItemDetailContainer />
-          </Route>
-          <Route path="/category/:categoryId">
-            <ItemListContainer greetings="IT-Resources Tienda Online"/>
-          </Route>
-          <Route path="/cart">
-            <Cart />
-          </Route>
-          <Route path="/">
-            <ItemListContainer greetings="IT-Resources Tienda Online"/>
-          </Route>
-        </Switch>    
-      </Context>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Context>
+          <NavBar/>
+          <Switch>
+            <Route path="/item/:itemId">
+              <ItemDetailContainer />
+            </Route>
+            <Route path="/category/:categoryId">
+              <ItemListContainer greetings="IT-Resources Tienda Online"/>
+            </Route>
+            <Route path="/cart">
+              <Cart />
+            </Route>
+            <Route path="/">
+              <ItemListContainer greetings="IT-Resources Tienda Online"/>
+            </Route>
+          </Switch>    
+        </Context>
+      </BrowserRouter>
     </div>
   );
 }

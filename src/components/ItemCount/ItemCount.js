@@ -8,7 +8,7 @@ const ItemCount = ({item}) => {
     const [valorSeleccionado, setValorSeleccionado] = useState(item.initial);
     
     // pasarle todo lo mismo q recibo
-    const {contador, setContador, cartList, setCartList, addItem, removeItem, clear, isInCart} = useContext(CartContext);
+    const {contador, setContador, addItem} = useContext(CartContext);
 
     useEffect(()=>{
         setValorSeleccionado(item.initial)
