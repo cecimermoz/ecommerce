@@ -13,4 +13,4 @@ React & Firebase
 
 ### Aquí una preview:
 
-![https://www.loom.com/share/a1fe17b45ae14a85b17788e97b0f1778](name-of-giphy.gif)
+![](web-preview.mp4)
