@@ -13,4 +13,4 @@ React & Firebase
 
 ### Aquí una preview:
 
-![](web-preview.mp4)
+![](web-preview.gif)
