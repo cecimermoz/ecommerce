@@ -5,6 +5,9 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      <div>
+        <HeaderSlider />
+      </div>
     </>
   );
 }
