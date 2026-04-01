@@ -6,7 +6,7 @@ import Link from 'next/link';
 import React from 'react';
 import HamburgerMenu from './HamburgerMenu';
 
-const Navbar = () => {
+export const Navbar = () => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
@@ -115,7 +115,7 @@ const Navbar = () => {
                 </div>
 
                 {isOpen && (
-                    <div className="md:hidden absolute w-[70%] h-full flex flex-col flex-full bg-black text-white top-[52px] right-0 z-10">
+                    <div className="md:hidden absolute w-[70%] h-full flex flex-col flex-full bg-black text-white top-13 right-0 z-10">
                         <div className="flex flex-col items-center gap-6  mt-16">
                             <Link href="/" className="hover:text-gray-400 transition">
                                 Home
@@ -146,5 +146,3 @@ const Navbar = () => {
         </div>
     );
 }
-
-export default Navbar;

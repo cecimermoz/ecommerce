@@ -1,11 +1,12 @@
 import { ProductParams } from "@/shared.types";
+import { PRODUCT } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 
 const ProductCard = ({ product }: { product: ProductParams }) => {
     return (
         <Link
-            href={`product/${product.id}`}
+            href={`${PRODUCT}${product.id}`}
             className="flex flex-col items-start gap-0.5  w-full cursor-pointer  "
         >
             <div className="cursor-pointer group relative bg-gray-500/10  w-full  flex items-center justify-center ">

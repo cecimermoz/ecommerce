@@ -23,9 +23,6 @@ export const HomeProducts = ({ products }: HomeProductsParams) => {
                     <ProductCard key={index} product={product} />
                 ))}
             </div>
-            {/* <button className="px-12 py-2.5 mb-4 border rounded bg-[#043033] text-white hover:bg-black transition">
-                See more
-            </button> */}
         </div>
     );
 };

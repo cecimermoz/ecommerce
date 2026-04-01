@@ -1,6 +1,6 @@
 import { HomeProducts } from "@/components";
 import HeaderSlider from "@/components/HeaderSlider";
-import Navbar from "@/components/Navbar";
+import { Navbar } from "@/components/Navbar";
 import { ProductParams } from "@/shared.types";
 import { fetchProducts } from "@/utils";
 
